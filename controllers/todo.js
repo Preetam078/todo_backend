@@ -13,17 +13,17 @@ todoRouter.get('/', (request, response) => {
 //get all the todos by ID
 todoRouter.get("/:id", (request, response, next) => {
     Todo.findById(request.params.id)
-    .then((todos)=> {
-        if(todos) {
-            response.json(todos)
-        }
-        else {
-            response.status(404).end();
-        }
-    })
-    .catch((error) => {
-        next(error);
-    })
+        .then((todos)=> {
+            if(todos) {
+                response.json(todos)
+            }
+            else {
+                response.status(404).end();
+            }
+        })
+        .catch((error) => {
+            next(error);
+        })
 })
 
 // add todo in the list (POST) request
@@ -36,23 +36,23 @@ todoRouter.post("/", (request, response, next) => {
     })
 
     newTodo.save()
-    .then((updatedList) => {
-        response.json(updatedList);
-    })
-    .catch((error) => {
-        next(error);
-    })
+        .then((updatedList) => {
+            response.json(updatedList);
+        })
+        .catch((error) => {
+            next(error);
+        })
 })
 
 // delete todo by its ID
 todoRouter.delete("/:id", (request, response, next) => {
     Todo.findByIdAndDelete(request.params.id)
-    .then(() => {
-        response.status(204).end();
-    })
-    .catch((error) => {
-        next(error);
-    })
+        .then(() => {
+            response.status(204).end();
+        })
+        .catch((error) => {
+            next(error);
+        })
 })
 
 
@@ -66,12 +66,12 @@ todoRouter.put("/:id", (request, response, next) => {
     }
 
     Todo.findByIdAndUpdate(request.params.id, TodoToUpdate, {new: true})
-    .then((updatedTodos) => {
-        response.json(updatedTodos);
-    })
-    .catch((error) => {
-        next(error)
-    })
+        .then((updatedTodos) => {
+            response.json(updatedTodos);
+        })
+        .catch((error) => {
+            next(error)
+        })
 })
 
 module.exports = todoRouter;

@@ -27,11 +27,11 @@ mongoose.connect(config.MONGO_URI);      //alternate way to handle
 const dbConnection = mongoose.connection;
 
 dbConnection.on("error", (error) => {
-  logger.error(`MongoDB connection error: ${error}`);
+    logger.error(`MongoDB connection error: ${error}`);
 });
 
 dbConnection.once("open", () => {
-  logger.info( `Connected to the MongoDB database ${config.MONGO_URI}`);
+    logger.info( `Connected to the MongoDB database ${config.MONGO_URI}`);
 });
 
 
